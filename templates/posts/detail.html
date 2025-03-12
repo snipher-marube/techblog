@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<div class="lg:flex gap-8">
+    <!-- Main Content -->
+    <div class="lg:w-3/4">
+        <article class="bg-white p-8 rounded-lg shadow-md">
+            <header class="mb-8">
+                <h1 class="text-3xl font-bold mb-4">{{ post.title }}</h1>
+                <div class="flex items-center space-x-4 text-gray-500">
+                    <time>{{ post.publish|date:"M d, Y" }}</time>
+                </div>
+            </header>
+            
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" 
+                 class="mb-8 rounded-lg shadow-lg w-full" loading="lazy">
+
+            <div class="ck-content">
+                {{ post.body|safe }}
+            </div>
+        </article>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="lg:w-1/4 mt-8 lg:mt-0">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-lg font-semibold mb-4">Related Articles</h3>
+            <div class="space-y-4">
+                {% for related in random_posts %}
+                <a href="{{ related.get_absolute_url }}" 
+                   class="block group">
+                    <img src="{{ related.image.url }}" alt="{{ related.title }}" 
+                         class="w-full h-32 object-cover rounded-lg mb-2" loading="lazy">
+                    <h4 class="text-gray-800 group-hover:text-blue-500 transition-colors">
+                        {{ related.title }}
+                    </h4>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </aside>
+</div>
+{% endblock %}

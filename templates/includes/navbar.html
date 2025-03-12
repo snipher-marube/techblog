@@ -1,0 +1,21 @@
+<!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-2xl font-bold text-gray-800">Tech Blog</a>
+                </div>
+                <div class="flex items-center space-x-8">
+                    <a href="{% url 'posts' %}" class="text-gray-600 hover:text-gray-900">Articles</a>
+                    <form action="{% url 'post_search' %}" method="get" class="flex">
+                        <input type="text" name="query" placeholder="Search..." 
+                               class="px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button type="submit" 
+                                class="px-4 py-2 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600">
+                            Search
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>

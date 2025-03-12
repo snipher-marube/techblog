@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Latest Articles{% endblock %}
+
+{% block content %}
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {% for post in posts %}
+    <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+        <a href="{{ post.get_absolute_url }}">
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" 
+                 class="w-full h-48 object-cover" loading="lazy">
+        </a>
+        <div class="p-6">
+            <time class="text-sm text-gray-500">{{ post.publish|date:"M d, Y" }}</time>
+            <h2 class="mt-2 text-xl font-semibold">
+                <a href="{{ post.get_absolute_url }}" class="text-gray-800 hover:text-blue-500">
+                    {{ post.title }}
+                </a>
+            </h2>
+            <p class="mt-2 text-gray-600">{{ post.intro }}</p>
+        </div>
+    </article>
+    {% endfor %}
+</div>
+
+<!-- Pagination -->
+{% if posts.paginator.num_pages > 1 %}
+<div class="mt-12 flex justify-center">
+    <div class="flex space-x-2">
+        {% if posts.has_previous %}
+            <a href="?page={{ posts.previous_page_number }}" 
+               class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Previous</a>
+        {% endif %}
+        
+        <span class="px-4 py-2 bg-gray-100 rounded">
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+        </span>
+
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}" 
+               class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Next</a>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

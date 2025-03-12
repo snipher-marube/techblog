@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> {% block title %} {% endblock %} </title>
+        <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    </head>
+    <body class="bg-gray-50">
+        {% include 'includes/navbar.html' %}
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white border-t mt-12">
+            <div
+                class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-gray-600">
+                <p>&copy; 2025 Tech Blog. All rights reserved.</p>
+            </div>
+        </footer>
+    </body>
+</html>
