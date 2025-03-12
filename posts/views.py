@@ -19,7 +19,7 @@ def posts(request):
         post_list = Post.published.all().only(
             'title', 'slug', 'intro', 'image', 'publish'
         )
-        paginator = Paginator(post_list, 12)  # Optimal for 3-column grid
+        paginator = Paginator(post_list, 6)  # Optimal for 3-column grid
         page_number = request.GET.get('page')
         posts = paginator.get_page(page_number)
         cache.set(cache_key, posts, timeout=300)  # Cache for 5 minutes
